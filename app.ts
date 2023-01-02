@@ -7,9 +7,18 @@ const onerror = require("koa-onerror");
 import bodyparser from "koa-bodyparser";
 import logger from "koa-logger";
 import koa_static from "koa-static";
+import jwtKoa from "koa-jwt";
 
 import index from "./src/routes/index";
 const users = require("./src/routes/users");
+
+app.use(
+  jwtKoa({
+    secret: "secret_code",
+  }).unless({
+    path: [/^\/users\/login/],
+  })
+);
 
 // error handler
 onerror(app);
