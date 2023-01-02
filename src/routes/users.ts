@@ -1,5 +1,5 @@
 import { Context, Next } from "koa";
-import UserController from "../controller/user";
+import UserController from "../controller/UserController";
 const router = require("koa-router")();
 
 router.prefix("/users");
