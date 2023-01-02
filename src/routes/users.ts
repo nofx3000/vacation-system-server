@@ -1,11 +1,11 @@
 import { Context, Next } from "koa";
-
+import UserController from "../controller/user";
 const router = require("koa-router")();
 
 router.prefix("/users");
 
-router.get("/", function (ctx: Context, next: Next) {
-  ctx.body = "this is a users response!";
+router.get("/create", async (ctx: Context, next: Next) => {
+  ctx.body = await UserController.createUser("dh", "123", "admin");
 });
 
 router.get("/bar", function (ctx: Context, next: Next) {

@@ -1,10 +1,6 @@
-import { Sequelize, Options } from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import { MYSQL_CONF } from "../conf/db";
 
-const { host, user, password, database } = MYSQL_CONF;
-const conf: Options = {
-  host,
-  dialect: "mysql",
-};
+const seq = new Sequelize(MYSQL_CONF);
 
-export const seq = new Sequelize(database, user, password, conf);
+export default seq;

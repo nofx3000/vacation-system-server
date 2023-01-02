@@ -1,14 +1,15 @@
 import { Next, Context } from "koa";
-const Koa = require("koa");
+import Koa from "koa";
 const app = new Koa();
 // const views = require("koa-views");
-const json = require("koa-json");
+import json from "koa-json";
 const onerror = require("koa-onerror");
-const bodyparser = require("koa-bodyparser");
-const logger = require("koa-logger");
+import bodyparser from "koa-bodyparser";
+import logger from "koa-logger";
+import koa_static from "koa-static";
 
-const index = require("./routes/index");
-const users = require("./routes/users");
+import index from "./src/routes/index";
+const users = require("./src/routes/users");
 
 // error handler
 onerror(app);
@@ -21,7 +22,7 @@ app.use(
 );
 app.use(json());
 app.use(logger());
-app.use(require("koa-static")(__dirname + "/public"));
+app.use(koa_static(__dirname + "/public"));
 
 // app.use(
 //   views(__dirname + "/views", {
@@ -38,8 +39,10 @@ app.use(async (ctx: Context, next: Next) => {
 });
 
 // routes
-app.use(index.routes(), index.allowedMethods());
-app.use(users.routes(), users.allowedMethods());
+app.use(index.routes());
+app.use(index.allowedMethods());
+app.use(users.routes());
+app.use(users.allowedMethods());
 
 // error-handling
 app.on("error", (err: Error, ctx: Context) => {

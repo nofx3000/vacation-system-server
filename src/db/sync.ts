@@ -1,6 +1,4 @@
-import { seq } from "./seq";
-
-import "./models/index";
+import seq from "./seq";
 
 // 测试连接
 seq

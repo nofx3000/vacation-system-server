@@ -8,4 +8,4 @@ router.get("/json", async (ctx: Context, next: Next) => {
   };
 });
 
-module.exports = router;
+export default router;
