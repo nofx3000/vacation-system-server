@@ -4,12 +4,18 @@ const router = require("koa-router")();
 
 router.prefix("/users");
 
-router.get("/create", async (ctx: Context, next: Next) => {
-  ctx.body = await UserController.createUser("dh", "123", "admin");
+interface loginInfo {
+  username: string;
+  password: string;
+}
+
+router.post("/login", async (ctx: Context, next: Next) => {
+  const { username, password } = ctx.request.body as loginInfo;
+  ctx.body = await UserController.login(username, password);
 });
 
-router.get("/bar", function (ctx: Context, next: Next) {
-  ctx.body = "this is a users/bar response";
+router.get("/create", async (ctx: Context, next: Next) => {
+  ctx.body = await UserController.createUser("dh", "123", "admin");
 });
 
 module.exports = router;
