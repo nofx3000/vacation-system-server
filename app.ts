@@ -7,18 +7,25 @@ const onerror = require("koa-onerror");
 import bodyparser from "koa-bodyparser";
 import logger from "koa-logger";
 import koa_static from "koa-static";
-import jwtKoa from "koa-jwt";
+// import jwtKoa from "koa-jwt";
+// import { SECRET_KEY } from "./src/conf/jwt";
 
 import index from "./src/routes/index";
-const users = require("./src/routes/users");
+import users from "./src/routes/users";
+import menu from "./src/routes/menu";
 
-app.use(
-  jwtKoa({
-    secret: "secret_code",
-  }).unless({
-    path: [/^\/users\/login/],
-  })
-);
+// app.use(
+//   jwtKoa({
+//     secret: SECRET_KEY,
+//   }).unless({
+//     path: [
+//       /^\/users\/login/,
+//       // /^\/users\/create/,
+//       /^\/users\/verify/,
+//       /^\/menu/,
+//     ],
+//   })
+// );
 
 // error handler
 onerror(app);
@@ -33,12 +40,6 @@ app.use(json());
 app.use(logger());
 app.use(koa_static(__dirname + "/public"));
 
-// app.use(
-//   views(__dirname + "/views", {
-//     extension: "pug",
-//   })
-// );
-
 // logger
 app.use(async (ctx: Context, next: Next) => {
   const start = new Date();
@@ -52,6 +53,8 @@ app.use(index.routes());
 app.use(index.allowedMethods());
 app.use(users.routes());
 app.use(users.allowedMethods());
+app.use(menu.routes());
+app.use(menu.allowedMethods());
 
 // error-handling
 app.on("error", (err: Error, ctx: Context) => {
