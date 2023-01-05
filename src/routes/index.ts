@@ -2,9 +2,11 @@ import { Context, Next } from "koa";
 
 const router = require("koa-router")();
 
-router.get("/json", async (ctx: Context, next: Next) => {
+router.prefix("/api");
+
+router.get("/", async (ctx: Context, next: Next) => {
   ctx.body = {
-    title: "koa2 json",
+    title: "koa2",
   };
 });
 

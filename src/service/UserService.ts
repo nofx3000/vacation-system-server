@@ -1,21 +1,21 @@
 import seq from "../db/seq";
+import { LoginInter, UserInfoInter } from "../interface/UserInterface";
+
 class UserService {
   static UserService: UserService = new UserService();
   private User = seq.models.User;
-  async findUser(username: string, password: string) {
+  async findUser(logininfo: LoginInter) {
+    const { username, password } = logininfo;
     return await this.User.findOne({
+      attributes: ["id", "username", "role"],
       where: {
         username,
         password,
       },
     });
   }
-  async createUser(username: string, password: string, role: string) {
-    return await this.User.create({
-      username,
-      password,
-      role,
-    });
+  async createUser(userinfo: UserInfoInter) {
+    return await this.User.create(userinfo as any);
   }
 }
 
