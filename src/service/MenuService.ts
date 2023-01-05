@@ -3,7 +3,9 @@ class MenuService {
   static MenuService: MenuService = new MenuService();
   private Menu = seq.models.Menu;
   async findMenus() {
-    return this.Menu.findAll();
+    return this.Menu.findAll({
+      attributes: ["id", "label", "path", "icon", "type", "children"],
+    });
   }
 }
 

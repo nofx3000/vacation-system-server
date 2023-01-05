@@ -12,6 +12,8 @@ export default class User extends Model {
   })
   password!: string;
 
-  @Column
+  @Column({
+    defaultValue: "user",
+  })
   role!: string;
 }

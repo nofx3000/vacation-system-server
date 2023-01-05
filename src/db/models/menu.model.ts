@@ -11,7 +11,7 @@ export default class Menu extends Model {
   path!: string;
 
   @Column({
-    defaultValue: "gears",
+    defaultValue: "<AppstoreOutlined />",
   })
   icon!: string;
 
@@ -19,5 +19,5 @@ export default class Menu extends Model {
   type!: string;
 
   @Column
-  chilren!: string;
+  children!: string;
 }

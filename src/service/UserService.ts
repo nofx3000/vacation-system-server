@@ -7,6 +7,7 @@ class UserService {
   async findUser(logininfo: LoginInter) {
     const { username, password } = logininfo;
     return await this.User.findOne({
+      attributes: ["id", "username", "role"],
       where: {
         username,
         password,
