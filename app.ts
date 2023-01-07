@@ -13,6 +13,7 @@ import koa_static from "koa-static";
 import index from "./src/routes/index";
 import users from "./src/routes/users";
 import menu from "./src/routes/menu";
+import people from "./src/routes/people";
 
 // app.use(
 //   jwtKoa({
@@ -55,6 +56,8 @@ app.use(users.routes());
 app.use(users.allowedMethods());
 app.use(menu.routes());
 app.use(menu.allowedMethods());
+app.use(people.routes());
+app.use(people.allowedMethods());
 
 // error-handling
 app.on("error", (err: Error, ctx: Context) => {

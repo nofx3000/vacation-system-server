@@ -1,4 +1,4 @@
-class BaseModel {
+export class BaseModel {
   errno: number;
   data: any;
   message!: any;
