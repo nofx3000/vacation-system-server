@@ -17,7 +17,23 @@ class PeopleController {
       const res = await PeopleService.createOnePerson(personInfo);
       return new SuccessModel(res);
     } catch (error) {
-      return new ErrorModel("created failed");
+      return new ErrorModel((error as any).toString());
+    }
+  }
+  async delOnePerson(id: number): Promise<BaseModel> {
+    try {
+      const res = await PeopleService.destroyOnePerson(id);
+      return new SuccessModel(0, res);
+    } catch (error) {
+      return new ErrorModel((error as any).toString());
+    }
+  }
+  async editOnePerson(personInfo: PersonInfoInter): Promise<BaseModel> {
+    try {
+      const res = await PeopleService.updateOnePerson(personInfo);
+      return new SuccessModel(res);
+    } catch (error) {
+      return new ErrorModel((error as any).toString());
     }
   }
 }

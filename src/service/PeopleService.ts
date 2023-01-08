@@ -14,8 +14,23 @@ class PeopleService {
     });
   }
   async createOnePerson(personInfo: PersonInfoInter) {
-    console.log(personInfo);
-    return this.People.create(personInfo as any);
+    const res = await this.People.create(personInfo as any);
+    return res;
+  }
+  async destroyOnePerson(id: number) {
+    return await this.People.destroy({
+      where: {
+        id,
+      },
+    });
+  }
+  async updateOnePerson(personInfo: PersonInfoInter) {
+    const res = await this.People.update(personInfo as any, {
+      where: {
+        id: personInfo.id,
+      },
+    });
+    return res;
   }
 }
 

@@ -13,7 +13,19 @@ router.get("/", async (ctx: Context) => {
 
 router.post("/add", async (ctx: Context) => {
   const personInfo: PersonInfoInter = ctx.request.body as any;
-  ctx.body = await PeopleController.addOnePerson(personInfo);
+  const res = await PeopleController.addOnePerson(personInfo);
+  ctx.body = res;
+});
+
+router.del("/del/:id", async (ctx: Context) => {
+  const id = ctx.params.id;
+  ctx.body = await PeopleController.delOnePerson(id);
+});
+
+router.put("/edit", async (ctx: Context) => {
+  const personInfo: PersonInfoInter = ctx.request.body as any;
+  const res = await PeopleController.editOnePerson(personInfo);
+  ctx.body = res;
 });
 
 export default router;
