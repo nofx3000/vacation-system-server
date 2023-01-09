@@ -14,6 +14,8 @@ export default class Phase extends Model {
     allowNull: false,
   })
   destination!: string;
+  @Column
+  address!: string;
 
   @Column
   traffic!: string;

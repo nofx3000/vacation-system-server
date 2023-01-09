@@ -12,4 +12,11 @@ router.get("/:id", async (ctx: Context) => {
   ctx.body = await RecordController.getRecordByPersonId(id);
 });
 
+router.post("/add", async (ctx: Context) => {
+  const data: RecordInter = ctx.request.body as any;
+  const res = await RecordController.addRecord(data);
+  console.log("?????", res);
+  ctx.body = res;
+});
+
 export default router;

@@ -1,4 +1,5 @@
 import seq from "../db/seq";
+import { RecordInter, PhaseInter } from "../interface/RecordInterface";
 class RecordService {
   static RecordService: RecordService = new RecordService();
   private Record = seq.models.Record;
@@ -11,6 +12,12 @@ class RecordService {
       include: {
         model: this.Phase,
       },
+    });
+  }
+  async createRecord(data: RecordInter) {
+    return this.Record.create({
+      person_id: data.person_id,
+      discount: data.discount,
     });
   }
 }
