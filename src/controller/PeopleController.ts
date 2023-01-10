@@ -36,6 +36,23 @@ class PeopleController {
       return new ErrorModel((error as any).toString());
     }
   }
+  async getPersonInfo(id: number): Promise<BaseModel> {
+    try {
+      const res = await PeopleService.findPersonById(id);
+      return new SuccessModel(res);
+    } catch (error) {
+      return new ErrorModel((error as any).toString());
+    }
+  }
+
+  // async updatePersonSpent(id: number, length: number): Promise<BaseModel> {
+  //   try {
+  //     const res = await PeopleService.updatePersonSpent(id, length);
+  //     return new SuccessModel(res);
+  //   } catch (error) {
+  //     return new ErrorModel((error as any).toString());
+  //   }
+  // }
 }
 
 export default PeopleController.PeopleController;

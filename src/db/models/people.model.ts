@@ -25,9 +25,6 @@ export default class People extends Model {
   @Column
   total_holiday!: number;
 
-  @Column
-  spent_holiday!: number;
-
   @Column({
     defaultValue: true,
   })

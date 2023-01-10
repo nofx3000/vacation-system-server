@@ -20,6 +20,36 @@ class RecordService {
       discount: data.discount,
     });
   }
+  async updateRecord(data: RecordInter) {
+    return this.Record.update(
+      {
+        person_id: data.person_id,
+        discount: data.discount,
+      },
+      {
+        where: {
+          id: data.id,
+        },
+      }
+    );
+  }
+  async findOneRecordById(id: number) {
+    return this.Record.findOne({
+      where: {
+        id,
+      },
+      include: {
+        model: this.Phase,
+      },
+    });
+  }
+  async destroyRecord(id: number) {
+    return this.Record.destroy({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 export default RecordService.RecordService;

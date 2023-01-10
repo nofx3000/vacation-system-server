@@ -32,6 +32,25 @@ class PeopleService {
     });
     return res;
   }
+  async findPersonById(id: number) {
+    return await this.People.findOne({
+      where: {
+        id,
+      },
+    });
+  }
+  // async updatePersonSpent(id: number, length: number) {
+  //   return await this.People.update(
+  //     {
+  //       spent_holiday: length,
+  //     },
+  //     {
+  //       where: {
+  //         id,
+  //       },
+  //     }
+  //   );
+  // }
 }
 
 export default PeopleService.PeopleService;

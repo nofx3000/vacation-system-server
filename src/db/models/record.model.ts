@@ -16,6 +16,9 @@ export default class Record extends Model {
   @Column
   discount!: number;
 
+  @Column
+  duration!: number;
+
   @BelongsTo(() => People)
   people!: People;
 
