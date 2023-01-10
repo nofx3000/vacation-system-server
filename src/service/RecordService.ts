@@ -18,6 +18,7 @@ class RecordService {
     return this.Record.create({
       person_id: data.person_id,
       discount: data.discount,
+      duration: data.duration,
     });
   }
   async updateRecord(data: RecordInter) {
@@ -25,6 +26,7 @@ class RecordService {
       {
         person_id: data.person_id,
         discount: data.discount,
+        duration: data.duration,
       },
       {
         where: {
