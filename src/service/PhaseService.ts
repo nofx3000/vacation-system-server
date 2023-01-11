@@ -57,6 +57,12 @@ class PhaseService {
       },
     });
   }
+  async findAllPhases() {
+    const year = new Date().getFullYear;
+    return this.Phase.findAll({
+      where: {},
+    });
+  }
 }
 
 export default PhaseService.PhaseService;

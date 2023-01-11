@@ -1,4 +1,5 @@
 import PeopleService from "../service/PeopleService";
+import DivisionService from "../service/DivisionService";
 import { SuccessModel, ErrorModel, BaseModel } from "../resmodel/ResModel";
 import { PersonInfoInter } from "../interface/PeopleInterface";
 
@@ -6,7 +7,7 @@ class PeopleController {
   static PeopleController: PeopleController = new PeopleController();
   async getAllPeopleInfoByDivison(): Promise<BaseModel> {
     try {
-      const peopleInfoByDivision = await PeopleService.findPeopleByDivision();
+      const peopleInfoByDivision = await DivisionService.findPeopleByDivision();
       return new SuccessModel(peopleInfoByDivision);
     } catch (error) {
       return new ErrorModel("get peopleInfoByDivision failed");
@@ -44,15 +45,6 @@ class PeopleController {
       return new ErrorModel((error as any).toString());
     }
   }
-
-  // async updatePersonSpent(id: number, length: number): Promise<BaseModel> {
-  //   try {
-  //     const res = await PeopleService.updatePersonSpent(id, length);
-  //     return new SuccessModel(res);
-  //   } catch (error) {
-  //     return new ErrorModel((error as any).toString());
-  //   }
-  // }
 }
 
 export default PeopleController.PeopleController;

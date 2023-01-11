@@ -4,8 +4,10 @@ import {
   Model,
   BelongsTo,
   ForeignKey,
+  HasMany,
 } from "sequelize-typescript";
 import Division from "./divison.model";
+import Record from "./record.model";
 
 @Table({
   timestamps: false,
@@ -49,4 +51,7 @@ export default class People extends Model {
 
   @BelongsTo(() => Division)
   division!: Division;
+
+  @HasMany(() => Record)
+  record!: Record[];
 }
