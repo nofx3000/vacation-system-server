@@ -17,4 +17,5 @@ export interface PhaseInter {
   end_at: Date;
   record_id?: number;
   delete_tag?: boolean; // only use in update
+  comment?: string;
 }

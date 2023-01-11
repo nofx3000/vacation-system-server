@@ -26,6 +26,9 @@ export default class Phase extends Model {
   @Column
   emergency_tel!: string;
 
+  @Column
+  comment!: string;
+
   @Column({
     allowNull: false,
   })

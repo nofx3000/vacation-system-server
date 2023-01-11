@@ -1,8 +1,11 @@
 import seq from "../db/seq";
+import { Op } from "sequelize";
 import { RecordInter, PhaseInter } from "../interface/RecordInterface";
 class PhaseService {
   static PhaseService: PhaseService = new PhaseService();
   private Phase = seq.models.Phase;
+  private Record = seq.models.Record;
+  private People = seq.models.People;
   async createOnePhase(phase: PhaseInter) {
     return this.Phase.create(phase as any);
   }
@@ -27,6 +30,30 @@ class PhaseService {
     return this.Phase.findAll({
       where: {
         record_id: id,
+      },
+      order: [["start_at", "ASC"]],
+    });
+  }
+  async findAllTodayPhases() {
+    const now = new Date();
+    return this.Phase.findAll({
+      where: {
+        start_at: {
+          [Op.lte]: now,
+        },
+        end_at: {
+          [Op.gte]: now,
+        },
+      },
+      include: {
+        model: this.Record,
+        attributes: ["person_id"],
+        include: [
+          {
+            model: this.People,
+            attributes: ["name", "total_holiday", "division_id"],
+          },
+        ],
       },
     });
   }

@@ -11,7 +11,9 @@ class RecordService {
       },
       include: {
         model: this.Phase,
+        as: "phase",
       },
+      order: [["phase", "start_at", "ASC"]],
     });
   }
   async createRecord(data: RecordInter) {
