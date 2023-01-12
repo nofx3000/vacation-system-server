@@ -7,6 +7,7 @@ const onerror = require("koa-onerror");
 import bodyparser from "koa-bodyparser";
 import logger from "koa-logger";
 import koa_static from "koa-static";
+import cors from "koa-cors";
 // import jwtKoa from "koa-jwt";
 // import { SECRET_KEY } from "./src/conf/jwt";
 
@@ -34,6 +35,16 @@ import phase from "./src/routes/phase";
 onerror(app);
 
 // middlewares
+app.use(
+  cors({
+    origin: function (ctx) {
+      return "*";
+    },
+    maxAge: 5,
+    credentials: true,
+  })
+);
+
 app.use(
   bodyparser({
     enableTypes: ["json", "form", "text"],
