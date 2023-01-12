@@ -45,6 +45,14 @@ class PeopleController {
       return new ErrorModel((error as any).toString());
     }
   }
+  async getPeopleInfoWithEverything(): Promise<BaseModel> {
+    try {
+      const res = await PeopleService.findAllPeopleInfo();
+      return new SuccessModel(res);
+    } catch (error) {
+      return new ErrorModel((error as any).toString());
+    }
+  }
 }
 
 export default PeopleController.PeopleController;

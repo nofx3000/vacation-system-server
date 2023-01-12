@@ -7,6 +7,11 @@ const router = require("koa-router")();
 
 router.prefix("/api/people");
 
+router.get("/all", async (ctx: Context) => {
+  const res = await PeopleController.getPeopleInfoWithEverything();
+  ctx.body = res;
+});
+
 router.get("/", async (ctx: Context) => {
   ctx.body = await PeopleController.getAllPeopleInfoByDivison();
 });
@@ -33,11 +38,5 @@ router.get("/:id", async (ctx: Context) => {
   const res = await PeopleController.getPersonInfo(id);
   ctx.body = res;
 });
-
-// router.patch("/:id/:length", async (ctx: Context) => {
-//   const { id, length } = ctx.params.id;
-//   const res = await PeopleController.updatePersonSpent(id, length);
-//   ctx.body = res;
-// });
 
 export default router;

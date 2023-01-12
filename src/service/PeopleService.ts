@@ -29,6 +29,23 @@ class PeopleService {
       },
     });
   }
+  async findAllPeopleInfo() {
+    return await this.People.findAll({
+      include: [
+        {
+          model: seq.models.Record,
+          include: [
+            {
+              model: seq.models.Phase,
+            },
+          ],
+        },
+        {
+          model: seq.models.Division,
+        },
+      ],
+    });
+  }
 }
 
 export default PeopleService.PeopleService;
