@@ -10,7 +10,8 @@ class PeopleController {
       const peopleInfoByDivision = await DivisionService.findPeopleByDivision();
       return new SuccessModel(peopleInfoByDivision);
     } catch (error) {
-      return new ErrorModel("get peopleInfoByDivision failed");
+      console.error("-----", error);
+      return new ErrorModel((error as any).toString());
     }
   }
   async addOnePerson(personInfo: PersonInfoInter): Promise<BaseModel> {
