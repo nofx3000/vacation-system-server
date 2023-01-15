@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "resetFolder": "rimraf dist/*",
     "compile": "tsc",
-    "build": "npm-run-all resetFolder compile"
+    "build-tsc": "npm-run-all resetFolder compile",
+    "build": "webpack --config ./webpack.config.js"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.0",

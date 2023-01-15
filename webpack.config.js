@@ -1,11 +1,9 @@
 const path = require("path");
-const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
+const TerserPlugin = require("terser-webpack-plugin");
 const webpackConfig = {
-  mode: "production",
+  mode: "development",
   target: "node", // koa项目仅在node环境下运行，因此设置称'node'
   entry: {
     // 设置入口文件
@@ -25,11 +23,11 @@ const webpackConfig = {
           "babel-loader",
           {
             loader: "ts-loader",
-            options: {
-              // 关闭类型检查，即只进行转译
-              // 类型检查交给 fork-ts-checker-webpack-plugin 在别的的线程中做
-              transpileOnly: true,
-            },
+            // options: {
+            //   // 关闭类型检查，即只进行转译
+            //   // 类型检查交给 fork-ts-checker-webpack-plugin 在别的的线程中做
+            //   transpileOnly: true,
+            // },
           },
         ],
         exclude: /node_modules/,
@@ -38,6 +36,23 @@ const webpackConfig = {
   },
   resolve: {
     extensions: [".js", ".ts"],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true, //使用多进程并发运行
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ["console.log"],
+          },
+          format: { comments: false },
+        },
+        extractComments: true, //将注释剥离到单独的文件中
+      }),
+    ],
   },
   externals: [nodeExternals()], // 排除对node_modules里的依赖进行打包
   plugins: [

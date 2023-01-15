@@ -3,6 +3,10 @@ class DivisionService {
   static DivisionService: DivisionService = new DivisionService();
   private Division = seq.models.Division;
   async findPeopleByDivision() {
+    console.log("----------------", seq.models);
+    for (const model in seq.models) {
+      console.log(seq.models[model]);
+    }
     return this.Division.findAll({
       include: [
         {

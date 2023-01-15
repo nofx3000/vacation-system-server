@@ -8,5 +8,5 @@ export const MYSQL_CONF: SequelizeOptions = {
   port: 3306,
   database: "vacation_db",
   dialect: "mysql",
-  models: [path.join(__dirname, "..", "/db/models/*.model.ts")],
+  // models: [path.join(__dirname, "..", "/db/models/*.model.ts")],
 };
