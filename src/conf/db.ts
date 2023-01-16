@@ -1,5 +1,5 @@
 import { SequelizeOptions } from "sequelize-typescript";
-import path from "path";
+import mysql2 from "mysql2";
 
 export const MYSQL_CONF: SequelizeOptions = {
   host: "localhost",
@@ -8,5 +8,6 @@ export const MYSQL_CONF: SequelizeOptions = {
   port: 3306,
   database: "vacation_db",
   dialect: "mysql",
+  dialectModule: mysql2,
   // models: [path.join(__dirname, "..", "/db/models/*.model.ts")],
 };

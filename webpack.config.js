@@ -30,7 +30,7 @@ const webpackConfig = {
             // },
           },
         ],
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
       },
     ],
   },
@@ -54,7 +54,7 @@ const webpackConfig = {
       }),
     ],
   },
-  externals: [nodeExternals()], // 排除对node_modules里的依赖进行打包
+  // externals: [nodeExternals()], // 排除对node_modules里的依赖进行打包
   plugins: [
     new CleanWebpackPlugin(), // 打包前清除输出目录
     // new ForkTsCheckerWebpackPlugin({
